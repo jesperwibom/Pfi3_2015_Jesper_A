@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skånetrafiken</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="menu_item_search">Sök</string>
+    <string name="journey_search">Reseplaneraren</string>
+    <string name="schedule_search">Tidtabeller</string>
+    <string name="station_search">Sök hållplats</string>
+    <string name="ticket_search">Biljett</string>
+    <string name="to">till</string>
+    <string name="from">från</string>
+    <string name="arrival">Ankomst</string>
+    <string name="change">Ändra</string>
+    <string name="departure">Avgång</string>
+    <string name="favorites">Favoriter</string>
+    <string name="now">Nu</string>
+    <string name="traffic">Trafikslag</string>
+    <string name="watched">Bevakade</string>
+    <string name="when">När</string>
+</resources>
