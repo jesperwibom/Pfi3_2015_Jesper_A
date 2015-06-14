@@ -1,18 +1,26 @@
 <resources>
-    <string name="app_name">assignment_3</string>
+    <string name="app_name">Travel alternatives</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
 
     <string name="short_departure">Dep</string>
     <string name="short_arrival">Arr</string>
+    <string name="info">Info</string>
     <string name="from">From</string>
     <string name="to">To</string>
 
-    <string-array name="stations">
+    <string-array name="stationNames">
         <item>Malmö C</item>
         <item>Lund C</item>
         <item>Halmstad C</item>
         <item>Köpenhamn C</item>
+    </string-array>
+
+    <string-array name="stationNumbers">
+        <item>80000</item>
+        <item>81216</item>
+        <item>13003</item>
+        <item>45007</item>
     </string-array>
 
 </resources>
