@@ -1,5 +1,7 @@
 package se.mah.idk.assignment_3;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,31 +20,24 @@ import se.mah.k3.skaneAPI.xmlparser.Parser;
 
 public class MainActivity extends ActionBarActivity {
 
-    private  ArrayList<Journey> journeyList;
-    TextView tw;
+    //private  ArrayList<Journey> journeyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_main);
 
-        tw = (TextView)findViewById(R.id.textView_test);
-        journeyList = new ArrayList<Journey>();
-
-        View v = findViewById(R.id.btn_search);
-        v. setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchURL = Constants.getURL("80000", "80100", 10); //Malmö C = 80000,  Malmö GAtorg 80100, Hässleholm C 93070
-                new DoInBackground().execute(searchURL);
-            }
-        });
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        MainFragment menuFragment = new MainFragment();
+        fragmentTransaction.replace(R.id.MainLayout, menuFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_test, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -63,9 +58,9 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
+    /*
     private void searchFinished(){
-
+        TextView tw = (TextView)findViewById(R.id.textView_test);
         tw.setText("");
         for (Journey j: journeyList){
             tw.append("From"+ j.getStartStation().getStationName()
@@ -92,4 +87,5 @@ public class MainActivity extends ActionBarActivity {
             searchFinished();
         }
     }
+    */
 }
