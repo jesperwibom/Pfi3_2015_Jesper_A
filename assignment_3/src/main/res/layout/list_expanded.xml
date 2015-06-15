@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff9f4fb"
+    >
 
     <TextView
         android:id="@+id/expandedInfo_from"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:text="@string/from"
-        />
-    <TextView
-        android:id="@+id/expandedInfo_departureTime"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:text="@string/short_departure"
+        android:layout_weight="1"
+        android:gravity="center"
         />
     <TextView
         android:id="@+id/expandedInfo_to"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:text="@string/to"
+        android:layout_weight="1"
+        android:gravity="center"
         />
     <TextView
-        android:id="@+id/expandedInfo_arrivalTime"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/expandedInfo_delay"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:text="@string/short_arrival"
+        android:text="@string/delay"
+        android:layout_weight="1"
+        android:gravity="center"
         />
 
 </LinearLayout>

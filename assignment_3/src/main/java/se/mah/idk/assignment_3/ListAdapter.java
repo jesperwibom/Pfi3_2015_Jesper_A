@@ -1,6 +1,7 @@
 package se.mah.idk.assignment_3;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,13 +35,19 @@ public class ListAdapter extends BaseExpandableListAdapter {
         String minutesToDeparture = journeys.get(groupPosition).getTimeToDeparture();
         departure.setText(minutesToDeparture);
 
+        TextView arrival = (TextView) convertView.findViewById(R.id.collapsedInfo_travelTime);
+        String minutesToArrival = journeys.get(groupPosition).getTravelMinutes();
+        arrival.setText(minutesToArrival);
+
         ImageView imageViewWarning = (ImageView) convertView.findViewById(R.id.imageView_soonDeparture);
         int timeLeft = Integer.parseInt(minutesToDeparture);
 
-        if(timeLeft <= 4 ){
+        if(timeLeft <= 5 ){
             imageViewWarning.setVisibility(View.VISIBLE);
+            departure.setTextColor(Color.RED);
         } else {
             imageViewWarning.setVisibility(View.INVISIBLE);
+            departure.setTextColor(Color.BLACK);
         }
 
         return convertView;
@@ -51,22 +58,22 @@ public class ListAdapter extends BaseExpandableListAdapter {
         LayoutInflater li = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = li.inflate(R.layout.list_expanded,null);
 
-
         TextView from = (TextView) convertView.findViewById(R.id.expandedInfo_from);
         Station fromStation = journeys.get(groupPosition).getStartStation();
         from.setText(fromStation.getStationName());
-
-        TextView departure = (TextView) convertView.findViewById(R.id.expandedInfo_departureTime);
-        String timeToDeparture = journeys.get(groupPosition).getTimeToDeparture();
-        departure.setText(timeToDeparture);
 
         TextView to = (TextView) convertView.findViewById(R.id.expandedInfo_to);
         Station toStation = journeys.get(groupPosition).getEndStation();
         to.setText(toStation.getStationName());
 
-        TextView arrival = (TextView) convertView.findViewById(R.id.expandedInfo_arrivalTime);
-        String timeOfTravel = journeys.get(groupPosition).getTravelMinutes();
-        arrival.setText(timeOfTravel);
+        TextView delay = (TextView) convertView.findViewById(R.id.expandedInfo_delay);
+        String timeDelay = journeys.get(groupPosition).getArrTimeDeviation();
+
+        if(timeDelay == ""){
+            delay.setText("+0 min");
+        } else {
+            delay.setText("+" + timeDelay + " min");
+        }
 
         return convertView;
     }

@@ -4,8 +4,9 @@
     <string name="action_refresh">Uppdatera</string>
     <string name="action_settings">Inställningar</string>
     <string name="from">Från</string>
-    <string name="short_arrival">Ank</string>
-    <string name="short_departure">Avg</string>
+    <string name="short_arrival">Restid</string>
+    <string name="short_departure">Avgår om</string>
     <string name="to">Till</string>
     <string name="info">Info</string>
+    <string name="station_name">Station</string>
 </resources>

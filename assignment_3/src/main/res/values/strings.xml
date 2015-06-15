@@ -9,6 +9,7 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="station_name">Station</string>
+    <string name="delay">Delay</string>
 
     <string-array name="stationNames">
         <item>Malmö C</item>
