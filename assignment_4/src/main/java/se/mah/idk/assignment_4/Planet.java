@@ -13,36 +13,38 @@ public class Planet implements Serializable {
     String radius;
     String mass;
     Drawable image;
+    String webURL;
 
-    public Planet(String name, String info, String radius, String mass, Drawable image) {
+    public Planet(String name, String info, String radius, String mass, Drawable image, String url) {
         this.name = name;
         this.info = info;
         this.radius = radius;
         this.mass = mass;
+        this.webURL = url;
         this.image = image;
     }
 
-    public String getInfo() {
-        return info;
-    }
+    public String getName() { return this.name; }
 
-    public void setInfo(String isbn) {
-        this.info = isbn;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public Drawable getImage() {
-        return image;
-    }
+    public String getInfo() { return this.info; }
 
-    public void setImage(Drawable image) {
-        this.image = image;
-    }
+    public void setInfo(String info) { this.info = info; }
 
-    public String getName() {
-        return name;
-    }
+    public String getRadius() { return this.radius; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setRadius(String radius) { this.radius = radius; }
+
+    public String getMass() { return this.mass; }
+
+    public void setMass(String mass) { this.mass = mass; }
+
+    public String getWebURL() { return this.webURL; }
+
+    public void setWebURL(String url) { this.webURL = url; }
+
+    public Drawable getImage() { return image; }
+
+    public void setImage(Drawable image) { this.image = image; }
 }
