@@ -17,6 +17,7 @@
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
         android:background="#fffffaf5"
+        android:paddingTop="26dp"
         />
 
 
