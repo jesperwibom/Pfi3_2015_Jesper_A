@@ -21,7 +21,8 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-        Planet planet = (Planet) getArguments().getSerializable("planet");
+        GridFragment gridFragment = new GridFragment();
+        Planet planet = gridFragment.getPlanet(gridFragment.getCurrentPlanet());
 
         ImageView imageViewPlanet = (ImageView) view.findViewById(R.id.imageView_planetImage);
         TextView textViewName = (TextView) view.findViewById(R.id.textView_planetName);

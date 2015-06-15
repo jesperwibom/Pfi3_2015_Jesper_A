@@ -1,5 +1,7 @@
 package se.mah.idk.assignment_4;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.activityLayout_main, new GridFragment());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -28,11 +35,25 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_info:
+                FragmentManager fragmentManager = getFragmentManager();
+                CustomDialogFragment customDialogFragment = new CustomDialogFragment();
+                customDialogFragment.show(fragmentManager, "Dialog");
+
+            case R.id.action_settings:
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setContentView(R.layout.activity_main);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.activityLayout_main, new GridFragment());
+        fragmentTransaction.commit();
     }
 }

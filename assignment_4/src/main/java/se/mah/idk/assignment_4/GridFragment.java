@@ -1,12 +1,11 @@
 package se.mah.idk.assignment_4;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ public class GridFragment extends Fragment {
 
     public static ArrayList<Planet> planets = new ArrayList<Planet>();
     public static ArrayList<Drawable> planetImages = new ArrayList<Drawable>();
+    public static int currentPlanet;
 
     public GridFragment() {
     }
@@ -27,6 +27,8 @@ public class GridFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i("GridFragment", "Loading assets to planets array");
 
         planetImages.add(getResources().getDrawable(R.drawable.mercury));
         planetImages.add(getResources().getDrawable(R.drawable.venus));
@@ -37,11 +39,15 @@ public class GridFragment extends Fragment {
         planetImages.add(getResources().getDrawable(R.drawable.uranus));
         planetImages.add(getResources().getDrawable(R.drawable.neptune));
 
+        Log.i("GridFragment", "Images loaded!");
+
         String[] planetInfo = getResources().getStringArray(R.array.planet_info);
         String[] planetNames = getResources().getStringArray(R.array.planet_names);
         String[] planetRadius = getResources().getStringArray(R.array.planet_radius);
         String[] planetMass = getResources().getStringArray(R.array.planet_mass);
         String[] planetURL = getResources().getStringArray(R.array.planet_links);
+
+        Log.i("GridFragment", "String[] loaded!");
 
         planets.clear();
         for(int i = 0; i < 8; i++){
@@ -54,6 +60,8 @@ public class GridFragment extends Fragment {
             planets.add(new Planet(name, info, radius, mass, image, url));
         }
 
+        Log.i("GridFragment", "Number of planets added: " + planets.size());
+
     }
 
     @Override
@@ -61,13 +69,16 @@ public class GridFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_grid, container, false);
-        CustomArrayAdapter adapter = new CustomArrayAdapter(getActivity(),planets);
 
+        CustomArrayAdapter adapter = new CustomArrayAdapter(getActivity(),planets);
         GridView gridView = (GridView) view.findViewById(R.id.gridView_planets);
         gridView.setAdapter(adapter);
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                currentPlanet = position;
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -83,5 +94,12 @@ public class GridFragment extends Fragment {
         return view;
     }
 
+    public int getCurrentPlanet(){
+        return this.currentPlanet;
+    }
+
+    public Planet getPlanet(int index){
+        return planets.get(index);
+    }
 
 }
