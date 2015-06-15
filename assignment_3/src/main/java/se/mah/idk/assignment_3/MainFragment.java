@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,15 +25,17 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
 
     private ListAdapter listAdapter;
     private ArrayList<Journey> arrayJourneys;
-
     private Spinner spinnerFrom;
     private Spinner spinnerTo;
-
-
 
     public MainFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true); //this activates menu items for fragment
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,27 +60,25 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         return view;
     }
 
-
     //Listens to refresh
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.refresh:
 
-        if (id == R.id.refresh) {
+                int fromStation = spinnerFrom.getSelectedItemPosition();
+                int toStation = spinnerTo.getSelectedItemPosition();
 
-            int fromStation = spinnerFrom.getSelectedItemPosition();
-            int toStation = spinnerTo.getSelectedItemPosition();
+                String[] arrayStationNumbers = getResources().getStringArray(R.array.stationNumbers);
+                String searchURL = Constants.getURL(arrayStationNumbers[fromStation], arrayStationNumbers[toStation], 10);
 
-            String[] arrayStationNumbers = getResources().getStringArray(R.array.stationNumbers);
-            String searchURL = Constants.getURL(arrayStationNumbers[fromStation], arrayStationNumbers[toStation], 10);
+                new CustomAsyncTask().execute(searchURL);
+                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                return true;
 
-            //CustomAsyncTask customAsyncTask = new CustomAsyncTask();
-            new CustomAsyncTask().execute(searchURL);
-            return true;
-
-        }else {
-            return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
     }
